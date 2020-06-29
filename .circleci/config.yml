@@ -13,11 +13,11 @@ jobs:
     working_directory: ~/webapp
     steps:
     - checkout
-    -  restore_cache:
-        keys:
+    - restore_cache:
+         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         - v1-dependencies-
-  　- run:
+    - run:
         name: setup bundler
         command: |
           sudo gem update --system
