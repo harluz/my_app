@@ -13,7 +13,7 @@ jobs:
     working_directory: ~/webapp
     steps:
     - checkout
-    - restore_cache:
+    -  restore_cache:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         - v1-dependencies-
