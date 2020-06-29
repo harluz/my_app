@@ -10,7 +10,7 @@ jobs:
       environment:
         MYSQL_USER: root
         MYSQL_DB: circle_test
-    working_directory: ~/repo
+    working_directory: ~/webapp
     steps:
     - checkout
     - restore_cache:
@@ -50,7 +50,7 @@ jobs:
       environment:
         MYSQL_USER: root
         MYSQL_DB: circle_test
-    working_directory: ~/repo
+    working_directory: ~/webapp
     steps:
     - checkout
     - restore_cache:
