@@ -65,7 +65,7 @@ jobs:
         MYSQL_USER: circleci-demo-ruby
         MYSQL_DB: rails_blog
     steps:
-    - checkout
+     - checkout
 
      - restore_cache:
         keys:
