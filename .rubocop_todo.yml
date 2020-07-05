@@ -8,7 +8,7 @@ AllCops:
     - lib/geohash.rb
     - lib/manager/geo.rb
     - bin/spring
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.6.3
 
 # Offense count: 326
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
