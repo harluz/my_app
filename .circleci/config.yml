@@ -65,7 +65,7 @@ jobs:
         MYSQL_USER: circleci-demo-ruby
         MYSQL_DB: rails_blog
     steps:
-     - checkout
+    - checkout
 
      - restore_cache:
         keys:
@@ -85,7 +85,7 @@ jobs:
      - run:
         name: Rspec
         command: bundle exec Rspec
-     environment:
+    environment:
      - CIRCLE_COMPARE_URL: https://github.com/harluz/my_app/compare/d2cc3820e21a4fb2d58cbd09095482d3f10f52c0...2a1529ec1b0ad13fb1d22337ac73738c33cb16cd
 
 workflows:
