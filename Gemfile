@@ -64,5 +64,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :staging do
-  gem 'rubocop', '~> 0.55.0', require: false
+  gem 'rubocop', '~> 0.82.0', require: false
 end
