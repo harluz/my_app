@@ -8,6 +8,7 @@ AllCops:
     - lib/geohash.rb
     - lib/manager/geo.rb
     - bin/spring
+    - Gemfile
   TargetRubyVersion: 2.6.3
 
 # Offense count: 326
