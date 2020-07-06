@@ -10,6 +10,7 @@ AllCops:
     - 'bin/spring'
     - 'Gemfile'
     - 'spec/*.rb'
+    - 'config/puma.rb'
   TargetRubyVersion: 2.6.3
 
 # Offense count: 326
