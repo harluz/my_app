@@ -2,13 +2,14 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   Exclude:
-    - db/**/*
-    - tmp/**/*
-    - vendor/**/*
-    - lib/geohash.rb
-    - lib/manager/geo.rb
-    - bin/spring
-    - Gemfile
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'lib/geohash.rb'
+    - 'lib/manager/geo.rb'
+    - 'bin/spring'
+    - 'Gemfile'
+    - 'spec/*.rb'
   TargetRubyVersion: 2.6.3
 
 # Offense count: 326
