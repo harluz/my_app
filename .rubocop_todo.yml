@@ -13,6 +13,9 @@ AllCops:
     - 'config/puma.rb'
   TargetRubyVersion: 2.6.3
 
+Documentation:
+  Enabled: false
+
 # Offense count: 326
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
