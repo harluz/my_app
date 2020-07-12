@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable LineLength
+# rubocop:disable Metrics/LineLength
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.

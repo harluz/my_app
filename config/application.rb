@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable LineLength
+# rubocop:disable Metrics/LineLength
 
 require_relative 'boot'
 
