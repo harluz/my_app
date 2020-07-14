@@ -14,7 +14,7 @@ AllCops:
 # Offense count: 326
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - 'Rakefile'
     - '**/*/.rake'
@@ -25,7 +25,7 @@ Metrics/MethodLength:
   Max: 150 # remove this after refacotr
 
 Naming/PredicateName:
-  NamePrefixBlacklist:
+  ForbiddenPrefixes:
     - has_
 
 Style/MixinUsage:
