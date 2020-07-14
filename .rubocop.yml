@@ -11,5 +11,5 @@ AllCops:
     - 'config/puma.rb'
   TargetRubyVersion: 2.6.3
 
-  Documentation:
+  Style/Documentation:
     Enabled: false
