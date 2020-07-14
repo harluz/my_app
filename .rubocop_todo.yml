@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   Exclude:
     - 'db/**/*'
@@ -12,9 +10,6 @@ AllCops:
     - 'spec/*.rb'
     - 'config/puma.rb'
   TargetRubyVersion: 2.6.3
-
-Documentation:
-  Enabled: false
 
 # Offense count: 326
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
@@ -29,15 +24,15 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 150 # remove this after refacotr
 
-PredicateName:
-  NamePrefixBlacklist:
+Naming/PredicateName:
+  ForbiddenPrefixes:
     - has_
 
-MixinUsage:
+Style/MixinUsage:
   Include:
     - app/**/*.rb
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 1
 
 Naming/AccessorMethodName:
@@ -92,6 +87,6 @@ Metrics/AbcSize:
   Max: 109
 
 # Offense count: 1
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - 'config/unicorn.rb'
