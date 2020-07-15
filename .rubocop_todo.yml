@@ -50,13 +50,13 @@ Metrics/PerceivedComplexity:
 
 # Offense count: 45
 # Configuration parameters: CountComments.
-Metrics/MethodLength:
-  Max: 106
+#Metrics/MethodLength:
+  #Max: 106
 
 # Offense count: 45
 # Configuration parameters: CountComments.
-Metrics/MethodLength:
-  Max: 109
+#Metrics/MethodLength:
+  #Max: 109
 
 # Offense count: 1
 # Configuration parameters: CountKeywordArgs.
