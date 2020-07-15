@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/LineLength
-
 require_relative 'boot'
 
 require 'rails/all'
