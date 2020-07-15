@@ -21,3 +21,5 @@ module Webapp
     # the framework and any gems in your application.
   end
 end
+
+# rubocop:enable Layout/LineLength
