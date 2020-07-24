@@ -69,3 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :staging do
   gem 'rubocop', '~> 0.82.0', require: false
 end
+
+group :production do
+  gem 'puma_worker_killer'
+end
