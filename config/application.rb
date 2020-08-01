@@ -17,5 +17,13 @@ module Webapp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.generate do |g|
+      g.test_framework :rspec,
+        controller_apecs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_soecs: false
+    end
   end
 end
