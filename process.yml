@@ -1,0 +1,88 @@
+version: 2
+jobs:
+  rubocop:
+    working_directory: ~/webapp
+    docker:
+    - image: circleci/ruby:2.6.3-node-browsers-legacy
+      environment:
+        BUNDLE_PATH: vendor/BUNDLE_PATH
+        PGHOST: 127.0.0.1
+        PGUSER: circleci-demo-ruby
+        RAILS_ENV: test
+    - image: circleci/mysql:8.0.19-ram
+      environment:
+        MYSQL_USER: circleci-demo-ruby
+        MYSQL_DB: rails_blog
+    steps:
+    - checkout
+    - run:
+        name: Designation Bundle
+        command: bundle -v
+    - restore_cache:
+        keys:
+        - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        - rails-demo-bundle-v2-
+    - run:
+        name: バンドルインストール
+        command: bundle check || bundle install
+    - save_cache:
+        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        paths:
+        - vendor/bundle
+    - restore_cache:
+        keys:
+        - rails-demo-yarn-{{ checksum "yarn.lock" }}
+        - rails-demo-yarn-
+    - run:
+        name: Yarnをインストール
+        command: yarn install --cacahe-folder ~/.cache/yarn
+    - save_cache:
+        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        paths:
+        - ~/.cache/yarn
+    - run:
+        name: rubocop
+        command: bundle exec rubocop
+    environment:
+    - CIRCLE_COMPARE_URL: https://github.com/harluz/my_app/compare/d2cc3820e21a4fb2d58cbd09095482d3f10f52c0...2a1529ec1b0ad13fb1d22337ac73738c33cb16cd
+  Rspec:
+    working_directory: ~/webapp
+    docker:
+    - image: circleci/ruby:2.6.3-node-browsers-legacy
+      environment:
+        BUNDLE_PATH: vendor/BUNDLE_PATH
+        PGHOST: 127.0.0.1
+        PGUSER: circleci-demo-ruby
+        RAILS_ENV: test
+    - image: circleci/mysql:8.0.19-ram
+      environment:
+        MYSQL_USER: circleci-demo-ruby
+        MYSQL_DB: rails_blog
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        - rails-demo-bundle-v2-
+    - run:
+        name: バンドルインストール
+        command: bundle check || bundle install
+    - save_cache:
+        paths:
+        - vendor/bundle
+        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+    - run: bundle exec rake db:create
+    - run: bundle exec rake db:schema:load
+    - run:
+        name: Rspec
+        command: bundle exec Rspec
+    environment:
+    - CIRCLE_COMPARE_URL: https://github.com/harluz/my_app/compare/d2cc3820e21a4fb2d58cbd09095482d3f10f52c0...2a1529ec1b0ad13fb1d22337ac73738c33cb16cd
+workflows:
+  version: 2
+  rubocop_rspec:
+    jobs:
+    - rubocop
+    - rspec:
+        requires:
+        - rubocop

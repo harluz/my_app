@@ -18,12 +18,12 @@ module Webapp
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.generate do |g|
+    config.generators do |g|
       g.test_framework :rspec,
         controller_apecs: false,
         view_specs: false,
         helper_specs: false,
-        routing_soecs: false
+        routing_specs: false
     end
   end
 end
