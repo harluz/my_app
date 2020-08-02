@@ -20,10 +20,10 @@ module Webapp
 
     config.generate do |g|
       g.test_framework :rspec,
-        controller_apecs: false,
-        view_specs: false,
-        helper_specs: false,
-        routing_soecs: false
+                       controller_apecs: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_soecs: false
     end
   end
 end
