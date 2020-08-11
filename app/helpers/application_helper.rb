@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def full_title(page_title = '') # full_titleメソッドを定義
+  # full_titleメソッドを定義
+  def full_title(page_title = '')
     base_title = 'Theme words'
     if page_title.blank?
       base_title # トップページはタイトル「Theme words」
