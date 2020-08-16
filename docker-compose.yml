@@ -13,6 +13,7 @@ services:
       - log-data:/my_app/log
     depends_on:
       - db
+    tty: true
   db:
     image: mysql:5.7
     env_file:
@@ -20,7 +21,8 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     ports:
-      - "3316:3306"
+      - "3306:3306"
+    tty: true
   web:
     build:
       context: containers/nginx
