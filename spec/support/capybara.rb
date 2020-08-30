@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # システムスペック用の設定
-Capybara.javascript_driver = :chrome_headless
+Capybara.javascript_driver = :selenium_chrome_headless
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
