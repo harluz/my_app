@@ -12,7 +12,11 @@ RSpec.describe User, type: :model do
     expect(user.errors[:name]).to include("can't be blank")
   end
   # 名前が50文字以上であれば無効な状態であること
-  it 'is invalid if the name are more than 50 characters'
+  it 'is invalid if the name are more than 50 characters' do
+    user = User.new(name: 'a' * 51)
+    user.valid?
+    expect(user.errors[:name]).to include('is too long (maximum is 50 characters)')
+  end
   # メールが空白であれば無効な状態であること
   it 'is invalid without an email'
   # メールが255文字以上であれば無効な状態であること
