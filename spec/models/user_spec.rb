@@ -24,7 +24,11 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("can't be blank")
   end
   # メールが255文字以上であれば無効な状態であること
-  it 'is invalid if the email are more than 255 characters'
+  it 'is invalid if the email are more than 255 characters' do
+    user = User.new(email: 'a' * 244 + '@example.com')
+    user.valid?
+    expect(user.errors[:email]).to include('is too long (maximum is 255 characters)')
+  end
   # 重複したメールアドレスであれば無効な状態であること
   it 'is invalid with a duplicate email address'
   # メールアドレスのフォーマットが正しければ有効な状態であること
