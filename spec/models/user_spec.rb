@@ -6,7 +6,11 @@ RSpec.describe User, type: :model do
   # 名前とメール、性別、パスワードが有効な状態であること
   it 'is valid with a name, email, sex, and password'
   # 名前が空白であれば無効な状態であること
-  it 'is invalid without a name'
+  it 'is invalid without a name' do
+    user = User.new(name: nil)
+    user.valid?
+    expect(user.errors[:name]).to include("can't be blank")
+  end
   # 名前が50文字以上であれば無効な状態であること
   it 'is invalid if the name are more than 50 characters'
   # メールが空白であれば無効な状態であること
