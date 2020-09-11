@@ -41,6 +41,8 @@ RSpec.describe User, type: :model do
   it 'is invalid if the password are more than 6 characters'
   # パスワードが５以下であれば無効な状態であること
   it 'is invalid if the password are less than 5 characters'
+  # パスワードとパスワード確認が一致していれば有効な状態であること
+  it 'is valid when password confirmation accords with a password'
   # 性別が空白であれば無効な状態であること
   it 'is invalid without a sex'
 end
