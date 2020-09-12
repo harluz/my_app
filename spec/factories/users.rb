@@ -2,11 +2,13 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'MyString' }
-    email { 'MyString' }
+    name { 'sample' }
+    sequence(:email) { |n| "example#{n}@example.com" }
     picture { 'MyString' }
     comment { 'MyText' }
-    sex { 'MyString' }
+    sex { 'men' }
+    password { 'foobar' }
+    password_confirmation { 'foobar' }
     admin { false }
   end
 end
