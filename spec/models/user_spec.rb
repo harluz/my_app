@@ -72,7 +72,7 @@ RSpec.describe User, type: :model do
     expect(build(:user, email: 'foo@bar+baz.comm')).to_not be_valid
   end
 
-  #メールアドレスが小文字で保存されること
+  # メールアドレスが小文字で保存されること
   it 'email addresses should be saved as lower-case' do
     user = create(:user, email: 'Foo@ExAMPle.CoM')
     expect(user.email).to eq user.email.downcase
