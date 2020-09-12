@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'sample' }
+    name { Faker::Name.name }
     sequence(:email) { |n| "example#{n}@example.com" }
     picture { 'MyString' }
     comment { 'MyText' }
