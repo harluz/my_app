@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
-  # 名前とメール、性別、パスワードが有効な状態であること
-  it 'is valid with a name, email, sex, and password' do
+  # 名前とメール、パスワードが有効な状態であること
+  it 'is valid with a name, email, and password' do
     user.valid?
     expect(user).to be_valid
   end
@@ -108,12 +108,5 @@ RSpec.describe User, type: :model do
     user = build(:user, password_confirmation: 'foobaz')
     user.valid?
     expect(user.errors[:password_confirmation]).to include("doesn't match Password")
-  end
-
-  # 性別が空白であれば無効な状態であること
-  it 'is invalid without a sex' do
-    user = build(:user, sex: nil)
-    user.valid?
-    expect(user.errors[:sex]).to include("can't be blank")
   end
 end
