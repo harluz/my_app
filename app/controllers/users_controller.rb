@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 class UsersController < ApplicationController
   def index; end
 
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    binding.pry
     if @user.save
       flash[:success] = 'Welcome to the Theme Words'
       redirect_to @user
@@ -30,7 +33,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
+    params.require(:user).permit(:name, :email, :image, :password,
                                  :password_confirmation)
   end
 end

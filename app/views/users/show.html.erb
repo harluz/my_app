@@ -1,1 +1,4 @@
+<% if @user.image? %>
+  <%= image_tag @user.image.thumb30.url %>
+<% end %>
 <%= @user.name %>,<%= @user.email %>

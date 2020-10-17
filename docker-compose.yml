@@ -1,6 +1,6 @@
 version: '3'
 services:
-  app:
+  app: &app_base
     build:
       context: .
     environment:
@@ -10,6 +10,8 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: my_app_development
       DATABASE_HOST: db
+    stdin_open: true
+    tty: true
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/my_app

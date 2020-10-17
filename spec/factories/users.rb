@@ -4,11 +4,10 @@ FactoryBot.define do
   factory :user do
     name { Faker::Name.name }
     sequence(:email) { |n| "example#{n}@example.com" }
-    picture { 'MyString' }
-    comment { 'MyText' }
-    sex { 'men' }
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
+    
     password { 'foobar' }
     password_confirmation { 'foobar' }
-    admin { false }
+    
   end
 end
