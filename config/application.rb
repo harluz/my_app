@@ -26,5 +26,8 @@ module Webapp
                        helper_specs: false,
                        routing_specs: false
     end
+
+    # WARN -- : Can't verify CSRF token authenticity.の警告ログを消す（検証は行っている）
+    config.action_controller.log_warning_on_csrf_failure = false
   end
 end
