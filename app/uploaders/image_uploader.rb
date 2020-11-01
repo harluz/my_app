@@ -11,13 +11,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   process convert: 'jpg'
 
   # サムネイルを生成する設定
-  version :thumb do
-    process resize_to_limit: [300, 300]
-  end
+  # version :thumb do
+  #   process resize_to_limit: [300, 300]
+  # end
 
-  version :thumb100 do
-    process resize_to_limit: [100, 100]
-  end
+  # version :thumb100 do
+  #   process resize_to_limit: [100, 100]
+  # end
 
   version :thumb30 do
     process resize_to_limit: [30, 30]
@@ -35,14 +35,14 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # ファイル名を日付にするとタイミングのせいでサムネイル名がずれる
   # ファイル名はランダムで一意になる
-  def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
-  end
+  #   def filename
+  #     "#{secure_token}.#{file.extension}" if original_filename.present?
+  #   end
 
-  protected
+  #   protected
 
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
-  end
+  #   def secure_token
+  #     var = :"@#{mounted_as}_secure_token"
+  #     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+  #   end
 end

@@ -3,6 +3,9 @@
 require 'pry'
 
 class UsersController < ApplicationController
+  protect_from_forgery with: :exception, only: :create
+  protect_from_forgery unless: -> { request.format.json? }
+
   def index; end
 
   def show
@@ -15,10 +18,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
     if @user.save
       flash[:success] = 'Welcome to the Theme Words'
-      redirect_to @user
+      # redirect_to @user
+      redirect_to user_url(@user)
     else
       render 'new'
     end
@@ -33,7 +36,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :image, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:name, :email, :image, :password, :password_confirmation)
   end
 end
