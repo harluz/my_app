@@ -56,6 +56,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.11'
   gem "pry-rails"
   gem "pry-byebug"
+  gem "database_cleaner"
 end
 
 group :development do
