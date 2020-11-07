@@ -7,7 +7,7 @@ RSpec.describe 'UsersRequests', type: :request do
     get signup_path
   end
 
-  describe 'GET #index'
+  # describe 'GET #index' do; end
 
   describe 'GET #show' do
     before { get users_path, params: { user: create(:user) } }
@@ -68,30 +68,30 @@ RSpec.describe 'UsersRequests', type: :request do
         end
       end
 
-        describe 'check response' do
-          before { post signup_path, params: { user: attributes_for(:invalid_user) } }
-          subject { response }
+      describe 'check response' do
+        before { post signup_path, params: { user: attributes_for(:invalid_user) } }
+        subject { response }
 
-          it 'render new' do
-            is_expected.to render_template('new')
-          end
+        it 'render new' do
+          is_expected.to render_template('new')
+        end
 
-          it 'responds successfully' do
-            is_expected.to be_successful
-          end
+        it 'responds successfully' do
+          is_expected.to be_successful
+        end
 
-          it 'returns a 200 response' do
-            is_expected.to have_http_status(200)
-          end
+        it 'returns a 200 response' do
+          is_expected.to have_http_status(200)
         end
       end
     end
   end
-
-  describe 'GET #edit' do end
-
-  describe 'PUT #update' do end
-
-  describe 'DELETE #destroy' do end
-
 end
+
+# describe 'GET #edit' do; end
+
+# describe 'PUT #update' do; end
+
+# describe 'DELETE #destroy' do; end
+
+# end
