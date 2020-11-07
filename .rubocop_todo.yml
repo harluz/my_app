@@ -9,7 +9,12 @@ AllCops:
     - 'Gemfile'
     - 'spec/*.rb'
     - 'config/puma.rb'
+    - '.pryrc'
   TargetRubyVersion: 2.6.3
+
+  Rails:
+    Enabled: true
+  
 
 # Offense count: 326
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
