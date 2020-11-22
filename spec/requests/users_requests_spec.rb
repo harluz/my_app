@@ -49,12 +49,16 @@ RSpec.describe 'UsersRequests', type: :request do
         before { post users_path, params: { user: attributes_for(:user) } }
         subject { response }
 
-        it 'rediorect to show' do
+        it 'redirect to show' do
           is_expected.to redirect_to user_path(User.last)
         end
 
         it 'returns a 302 response' do
           is_expected.to have_http_status(302)
+        end
+
+        it 'log in successfully' do
+          expect(is_logged_in?).to be_truthy
         end
       end
     end
@@ -82,6 +86,10 @@ RSpec.describe 'UsersRequests', type: :request do
 
         it 'returns a 200 response' do
           is_expected.to have_http_status(200)
+        end
+
+        it 'log in unsuccessfully' do
+          expect(is_logged_in?).to be_falsy
         end
       end
     end

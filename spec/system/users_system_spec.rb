@@ -27,6 +27,23 @@ RSpec.describe 'Users', type: :system do
       it 'gets a flash message' do
         expect(page).to have_selector('.alert-success', text: 'Welcome to the Theme Words')
       end
+
+      # 違うページにアクセスした時
+      describe 'access to other page' do
+        before { visit root_url }
+        # フラッシュメッセージが消える
+        it 'is flash dissapear' do
+          expect(page).to_not have_selector('.alert-success', text: 'Welcome to the Theme Words')
+        end
+      end
+      # ページをリロードした時
+      describe 'reload page' do
+        before { visit current_path }
+        # フラッシュメッセージが消える
+        it 'is flash dissapear' do
+          expect(page).to_not have_selector('.alert-success', text: 'Welcome to the Theme Words')
+        end
+      end
     end
 
     # 無効な値が入力された時
@@ -51,6 +68,23 @@ RSpec.describe 'Users', type: :system do
       # renderの確認
       it 'render to /signup url' do
         expect(current_path).to eq users_path
+      end
+
+      # 違うページにアクセスした時
+      describe 'access to other page' do
+        before { visit root_url }
+        # フラッシュメッセージが消える
+        it 'is flash dissapear' do
+          expect(page).to_not have_selector('.alert-danger', text: 'The form contains 6 errors.')
+        end
+      end
+      # ページをリロードした時
+      describe 'reload page' do
+        before { visit current_path }
+        # フラッシュメッセージが消える
+        it 'is flash diasspear' do
+          expect(page).to_not have_selector('.alert-danger', text: 'The form contains 6 errors.')
+        end
       end
     end
   end

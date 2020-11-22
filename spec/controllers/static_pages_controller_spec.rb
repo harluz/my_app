@@ -10,30 +10,9 @@ RSpec.describe StaticPagesController, type: :controller do
     end
   end
 
-  describe 'GET #log_in' do
-    it 'returns http success' do
-      get :log_in
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'GET #log_out' do
-    it 'returns http success' do
-      get :log_out
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'GET #about' do
     it 'returns http success' do
       get :about
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'GET #profile' do
-    it 'returns http success' do
-      get :profile
       expect(response).to have_http_status(200)
     end
   end
