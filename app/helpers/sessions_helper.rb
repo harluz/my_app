@@ -7,6 +7,7 @@ module SessionsHelper
   end
 
   # ログインしている状態であれば、sessionのuser_idを保有している。それが、@current_userに格納されているのか、なければ追加する
+  # cookieに保存さたユーザーIDをもとにユーザーの情報を取得するメソッド
   def current_user
     if session[:user_id]
       # ログインとログアウトで使用することからインスタンス変数としている
@@ -14,7 +15,7 @@ module SessionsHelper
     end
   end
 
-  # ユーザーのログインしていればtrue、その他ならfalse
+  # userのログイン状態をtrue or false で判断したい
   def logged_in?
     !current_user.nil?
   end
