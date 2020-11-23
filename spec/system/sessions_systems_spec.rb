@@ -61,7 +61,7 @@ RSpec.describe 'SessionsSystems', type: :system do
       it 'is profile link disappear' do
         is_expected.to_not have_link nil, href: user_path(@user)
       end
-      
+
       it 'is logout_path dissapear' do
         is_expected.to_not have_link nil, href: logout_path
       end
