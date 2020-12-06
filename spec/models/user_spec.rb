@@ -109,4 +109,9 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:password_confirmation]).to include("doesn't match Password")
   end
+
+  # remember_digestが存在しない場合のテスト
+  it 'return false for an user with nil digest' do
+    expect(user.authenticated?('')).to be_falsy
+  end
 end
