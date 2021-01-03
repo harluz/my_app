@@ -1,2 +1,4 @@
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'app'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'test_app'@'%';
 FLUSH PRIVILEGES;
