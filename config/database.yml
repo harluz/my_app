@@ -1,17 +1,37 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  charset: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'app' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
-  # host: localhost
-  host: db
+  # username: <%= ENV.fetch('MYSQL_USER') { 'app' } %>
+  # password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+  # host: db
   port: 3306
 
 development:
   <<: *default
+  # username: <%= ENV.fetch('MYSQL_USER') { 'app' } %>
+  username: <%= ENV['DATABASE_DEV_USER'] %>
+  password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
   database: my_app_development
+  # ローカル環境の場合
+  # host: localhost
+  # docker環境の場合
+  host: db
 
 test:
   <<: *default
+  # username: <%= ENV.fetch('MYSQL_USER') { 'test_app' } %>
+  username: <%= ENV['DATABASE_TEST_USER'] %>
+  password: <%= ENV['DATABASE_TEST_PASSWORD'] %>
   database: my_app_test
+  # ローカル環境の場合
+  # host: localhost
+  # docker環境の場合
+  host: test_db
+
+# production:
+#   <<: *default
+#   database: my_app_production
+
+# https://qiita.com/nishina555/items/7142bc80ac0c678c3835 を参考に実装R2/12/31
