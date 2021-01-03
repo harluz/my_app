@@ -199,7 +199,7 @@ RSpec.describe 'UsersRequests', type: :request do
           let(:other_user) { FactoryBot.create(:other_user) }
           # 正しいユーザーのとき
           before { sign_in user }
-          context "when the correct user" do
+          context 'when the correct user' do
             # updateが成功するとき
             context 'when editting is successful' do
               before do
@@ -242,7 +242,7 @@ RSpec.describe 'UsersRequests', type: :request do
           end
 
           # 正しくないユーザーのとき
-          context "when the incorrect user" do
+          context 'when the incorrect user' do
             before { sign_in other_user }
             # 正常な値を送信しても失敗する
             context 'when editting is successful' do
@@ -258,7 +258,7 @@ RSpec.describe 'UsersRequests', type: :request do
               it 'redirect to root url' do
                 is_expected.to redirect_to root_url
               end
-  
+
               it 'returns a 302 response' do
                 is_expected.to have_http_status(302)
               end
@@ -278,7 +278,7 @@ RSpec.describe 'UsersRequests', type: :request do
               it 'redirect to root url' do
                 is_expected.to redirect_to root_url
               end
-  
+
               it 'returns a 302 response' do
                 is_expected.to have_http_status(302)
               end
@@ -376,21 +376,21 @@ RSpec.describe 'UsersRequests', type: :request do
     end
 
     # ユーザー数の検証
-    describe "User count verification" do
+    describe 'User count verification' do
       let!(:user) { FactoryBot.create(:user, :admin) }
       let!(:other_user) { FactoryBot.create(:other_user) }
       before { sign_in user }
       # deleteが成功するとき
-      context "When delete succeeds" do
+      context 'When delete succeeds' do
         it 'User count dectrases' do
           expect do
             delete user_path(other_user), params: { id: other_user.id }
           end.to change(User, :count).by(-1)
         end
       end
-      
+
       # deleteが失敗するとき
-      context "When delete fails" do
+      context 'When delete fails' do
         it 'User count does not change' do
           expect do
             delete user_path(user), params: { id: user.id }
