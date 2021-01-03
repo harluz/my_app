@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :system do
 
   describe 'user create a new account' do
     # 有効な値が入力された時
-    context 'enter a valid value' do
+    context 'when the user enters a valid value' do
       before do
         user = build(:user)
         visit new_user_path
@@ -29,7 +29,7 @@ RSpec.describe 'Users', type: :system do
       end
 
       # 違うページにアクセスした時
-      describe 'access to other page' do
+      context 'when accessing another page' do
         before { visit root_url }
         # フラッシュメッセージが消える
         it 'is flash dissapear' do
@@ -37,7 +37,7 @@ RSpec.describe 'Users', type: :system do
         end
       end
       # ページをリロードした時
-      describe 'reload page' do
+      context 'when the page is reloaaded' do
         before { visit current_path }
         # フラッシュメッセージが消える
         it 'is flash dissapear' do
@@ -47,7 +47,7 @@ RSpec.describe 'Users', type: :system do
     end
 
     # 無効な値が入力された時
-    context 'enter an invalid value' do
+    context 'when the user enters an invalid value' do
       before do
         visit new_user_path
         fill_in 'Name', with: ' '
@@ -71,7 +71,7 @@ RSpec.describe 'Users', type: :system do
       end
 
       # 違うページにアクセスした時
-      describe 'access to other page' do
+      context 'when accessing another page' do
         before { visit root_url }
         # フラッシュメッセージが消える
         it 'is flash dissapear' do
@@ -79,7 +79,7 @@ RSpec.describe 'Users', type: :system do
         end
       end
       # ページをリロードした時
-      describe 'reload page' do
+      context 'when the page is reloaaded' do
         before { visit current_path }
         # フラッシュメッセージが消える
         it 'is flash diasspear' do

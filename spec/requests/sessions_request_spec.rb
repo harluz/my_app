@@ -22,8 +22,7 @@ RSpec.describe 'SessionsRequests', type: :request do
     describe 'valid request' do
       describe 'check response' do
         before do
-          post login_path, params: { session: { email: user.email,
-                                                password: user.password } }
+          log_in_as(user)
         end
 
         it 'redirect to show' do
@@ -70,8 +69,8 @@ RSpec.describe 'SessionsRequests', type: :request do
       # remember_meを適用する時
       it 'Apply remember_me' do
         log_in_as(user)
-        pending 'テストが通らないため後で修正する'
-        expect(response.cookies['remember_token']).not_to eq nil
+        # pending 'テストが通らないため後で修正する'
+        expect(cookies[:remember_token]).not_to eq nil
       end
 
       # remember_meを適用しない時
@@ -122,6 +121,16 @@ RSpec.describe 'SessionsRequests', type: :request do
           expect(is_logged_in?).to be_falsy
         end
       end
+    end
+  end
+
+  # フレンドリーフォワーディングのテスト
+  describe 'friendly forwarding' do
+    let!(:user) { FactoryBot.create(:user) }
+    it 'Access the previous URL' do
+      get edit_user_path(user)
+      log_in_as(user)
+      expect(response).to redirect_to edit_user_path(user)
     end
   end
 end

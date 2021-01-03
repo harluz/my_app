@@ -3,18 +3,11 @@ services:
   app: &app_base
     build:
       context: .
-    # environment:
-    #   RAILS_ENV: development
-    #   MYSQL_ROOT_PASSWORD: db_root_password
-    #   MYSQL_USER: app
-    #   MYSQL_PASSWORD: password
-    #   MYSQL_DATABASE: my_app_development
-    #   # - my_app_test
-    #   DATABASE_HOST: db
     tty: true
     stdin_open: true
-    # docker環境とローカル環境を区別するためにpuma.rbをリネームしている
-    command: bundle exec puma -C config/puma-docker.rb
+    # command: bundle exec puma -C config/puma_non_proxy.rb
+    # command: rails server -b 0.0.0.0
+    command: rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/my_app
       - public-data:/my_app/public
@@ -28,17 +21,12 @@ services:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
-      # MYSQL_ROOT_PASSWORD: db_root_password
       MYSQL_ROOT_PASSWORD: ${DATABASE_DEV_PASSWORD}
-      # MYSQL_USER: app
       MYSQL_USER: ${DATABASE_DEV_USER}
-      # MYSQL_PASSWORD: password
       MYSQL_PASSWORD: ${DATABASE_DEV_PASSWORD}
       MYSQL_DATABASE: my_app_development
-      # DATABASE_HOST: db
     volumes:
       - db-data:/var/lib/mysql
-      # - mysql-data:/var/lib/mysql
     ports:
       - "3316:3306"
 
@@ -46,29 +34,23 @@ services:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
-      # MYSQL_ROOT_PASSWORD: db_root_password
       MYSQL_ROOT_PASSWORD: ${DATABASE_TEST_PASSWORD}
-      # MYSQL_USER: app
       MYSQL_USER: ${DATABASE_TEST_USER}
-      # MYSQL_PASSWORD: password
       MYSQL_PASSWORD: ${DATABASE_TEST_PASSWORD}
       MYSQL_DATABASE: my_app_test
-      # DATABASE_HOST: test_db
-    # volumes: ←テスト用であることから永続化する必要がない
-    #   - db-data:/var/lib/mysql
     ports:
       - "3317:3306"
 
-  web:
-    build:
-      context: containers/nginx
-    volumes:
-      - public-data:/my_app/public
-      - tmp-data:/my_app/tmp
-    ports:
-      - "3000:80"
-    depends_on:
-      - app
+  # web:
+  #   build:
+  #     context: containers/nginx
+  #   volumes:
+  #     - public-data:/my_app/public
+  #     - tmp-data:/my_app/tmp
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - app
 volumes:
   public-data:
   tmp-data:
