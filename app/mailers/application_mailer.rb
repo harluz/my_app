@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  # 共通のアドレス
+  default from: 'noreply@example.com'
+  # 　viewのmailerを呼び出す
   layout 'mailer'
 end

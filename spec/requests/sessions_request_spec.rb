@@ -69,7 +69,6 @@ RSpec.describe 'SessionsRequests', type: :request do
       # remember_meを適用する時
       it 'Apply remember_me' do
         log_in_as(user)
-        # pending 'テストが通らないため後で修正する'
         expect(cookies[:remember_token]).not_to eq nil
       end
 

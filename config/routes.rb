@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   get '/signup'  => 'users#new'
   post '/signup' => 'users#create'
   resources :users
+  resources :account_activations, only: [:edit]
 end

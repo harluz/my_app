@@ -39,7 +39,7 @@ RSpec.describe 'UsersEdits', type: :system do
           expect(page).to_not have_selector('.alert-success', text: 'Profile updated')
         end
       end
-      
+
       # ページをリロードした時
       context 'when the page is reloaaded' do
         before { visit current_path }
@@ -77,7 +77,7 @@ RSpec.describe 'UsersEdits', type: :system do
           expect(has_css?('.alert-danger')).to_not be_truthy
         end
       end
-      
+
       # ページをリロードした時
       context 'when the page is reloaaded' do
         before { visit current_path }
