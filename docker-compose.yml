@@ -14,7 +14,7 @@ services:
     tty: true
     stdin_open: true
     # docker環境とローカル環境を区別するためにpuma.rbをリネームしている
-    command: bundle exec puma -C config/puma-docker.rb
+    command: bundle exec puma -C config/puma_docker.rb
     volumes:
       - .:/my_app
       - public-data:/my_app/public
