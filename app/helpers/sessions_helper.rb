@@ -20,7 +20,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user&.authenticated?(cookies[:remember_token])
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
@@ -59,8 +59,8 @@ module SessionsHelper
     session.delete(:forwarding_url)
   end
 
-  # アクセス使用としたURLを覚えておく
-  # GETリウクエストが飛んだ時のみ元のURLを取得し記憶しておく
+  # アクセスしようとしたURLを覚えておく
+  # GETリクエストが飛んだ時のみ元のURLを取得し記憶しておく
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
