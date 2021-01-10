@@ -15,12 +15,19 @@ class UsersController < ApplicationController
   PER = 10
 
   def index
-    @users = User.page(params[:page]).per(PER)
+    @users = User.where(activated: true).page(params[:page]).per(PER)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    if @user
+      redirect_to(root_url) && return unless @user.activated?
     # @user ? (redirect_to @user) : (redirect_to request.referer)
+    else
+      # ログインしていないユーザーの挙動が微妙
+      redirect_to users_url
+      flash[:danger] = 'That user does not exist'
+    end
   end
 
   def new
@@ -30,9 +37,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = 'Welcome to the Theme Words'
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = 'Please check your email to activate your account.'
+      redirect_to root_url
+      # log_in @user
+      # flash[:success] = 'Welcome to the Theme Words'
+      # redirect_to @user
     else
       render 'new'
     end
@@ -59,12 +69,11 @@ class UsersController < ApplicationController
     # adminのユーザーを削除できない仕様に変更
     if @user.admin?
       flash[:danger] = 'This user cannot be deleted.'
-      redirect_to users_url
     else
       @user.destroy
       flash[:success] = 'User deleted'
-      redirect_to users_url
     end
+    redirect_to users_url
   end
 
   private
@@ -76,7 +85,10 @@ class UsersController < ApplicationController
   # ログイン済みユーザーかどうか確認
   def logged_in_user
     # ログインしていないのなら
-    unless logged_in?
+    if logged_in?
+      # return
+      nil
+    else
       store_location
       flash[:danger] = 'Please log in.'
       redirect_to login_url
