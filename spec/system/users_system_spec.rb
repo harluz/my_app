@@ -25,7 +25,7 @@ RSpec.describe 'Users', type: :system do
       end
       # フラッシュメッセージが表示される
       it 'gets a flash message' do
-        expect(page).to have_selector('.alert-success', text: 'Welcome to the Theme Words')
+        expect(page).to have_selector('.alert-info', text: 'Please check your email to activate your account.')
       end
 
       # 違うページにアクセスした時
@@ -33,7 +33,7 @@ RSpec.describe 'Users', type: :system do
         before { visit root_url }
         # フラッシュメッセージが消える
         it 'is flash dissapear' do
-          expect(page).to_not have_selector('.alert-success', text: 'Welcome to the Theme Words')
+          expect(page).to_not have_selector('.alert-info', text: 'Please check your email to activate your account.')
         end
       end
       # ページをリロードした時
