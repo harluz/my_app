@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   get 'sessions/new'
   root 'static_pages#home'
   # get '/log_in'  => 'static_pages#log_in'
@@ -22,4 +24,5 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   resources :users
   resources :account_activations, only: [:edit]
+  resources :password_resets, only: %i[new create edit update]
 end
