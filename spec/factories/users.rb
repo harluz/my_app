@@ -15,6 +15,8 @@ FactoryBot.define do
 
     activated { true }
     activated_at { Time.zone.now }
+
+    reset_sent_at { Time.zone.now }
   end
 
   factory :user_update_after, class: User do
