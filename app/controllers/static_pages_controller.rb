@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class StaticPagesController < ApplicationController
-  def home; end
+  PER = 10
+
+  def home
+    if logged_in?
+      # @post = current_user.posts.build if logged_in?
+      @image_items = Post.all.order(created_at: 'DESC').page(params[:page]).per(PER)
+    end
+  end
 
   # def log_in; end
 
@@ -9,11 +16,11 @@ class StaticPagesController < ApplicationController
 
   def about; end
 
-  def profile; end
+  # def profile; end
 
-  def my_list; end
+  # def my_list; end
 
-  def suggest; end
+  # def suggest; end
 
-  def seek; end
+  # def seek; end
 end

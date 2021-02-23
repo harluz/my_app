@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user
       redirect_to(root_url) && return unless @user.activated?
-    # @user ? (redirect_to @user) : (redirect_to request.referer)
+
+      # @user ? (redirect_to @user) : (redirect_to request.referer)
+      @posts = @user.posts.page(params[:page]).per(PER)
     else
       # ログインしていないユーザーの挙動が微妙
       redirect_to users_url
@@ -80,19 +82,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :image, :password, :password_confirmation)
-  end
-
-  # ログイン済みユーザーかどうか確認
-  def logged_in_user
-    # ログインしていないのなら
-    if logged_in?
-      # return
-      nil
-    else
-      store_location
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
-    end
   end
 
   # 正しいユーザーかどうか確認
