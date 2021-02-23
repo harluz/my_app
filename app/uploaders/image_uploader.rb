@@ -38,6 +38,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_limit: [30, 30]
   end
 
+  version :thumb300 do
+    process resize_to_limit: [300, 300]
+  end
+
   # jpg,jpeg,gif,pngしか受け付けない
   def extension_white_list
     %w[jpg jpeg gif png]
