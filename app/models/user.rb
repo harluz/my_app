@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :orders, dependent: :nullify
+  has_many :responses, dependent: :nullify
+  has_many :posts, dependent: :nullify
   # 仮想的なremember_token属性を追加
   attr_accessor :remember_token, :activation_token, :reset_token
 

@@ -114,4 +114,36 @@ RSpec.describe User, type: :model do
   it 'returns false for a user with nil digest' do
     expect(user.authenticated?(:remember, '')).to be_falsy
   end
+
+  describe 'dependent: :nullify' do
+    before do
+      user.posts.create!(english: 'language', japanese: '言語', image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')))
+      user.orders.create!(english: 'language', japanese: '言語')
+      user.responses.create!(order_id: Order.first.id, image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')))
+    end
+
+    it 'Posts remain even after deleting a user' do
+      expect do
+        user.destroy
+      end.to change(Post, :count).by(0)
+    end
+
+    it 'The order remains even if the user is deleted' do
+      expect do
+        user.destroy
+      end.to change(Order, :count).by(0)
+    end
+
+    it 'Response remains even if the user is deleted' do
+      expect do
+        user.destroy
+      end.to change(Response, :count).by(0)
+    end
+
+    it 'Response remains even if the order is deleted' do
+      expect do
+        user.orders.destroy
+      end.to change(Response, :count).by(0)
+    end
+  end
 end

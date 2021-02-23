@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   # get '/log_in'  => 'static_pages#log_in'
   # get '/log_out' => 'static_pages#log_out'
   get '/about'   => 'static_pages#about'
-  # get '/profile' => 'static_pages#profile'
-  get '/my_list' => 'static_pages#my_list'
-  get '/suggest' => 'static_pages#suggest'
-  get '/seek'    => 'static_pages#seek'
+  get '/profile' => 'static_pages#profile'
+  # get '/my_list' => 'static_pages#my_list'
+  # get '/suggest' => 'static_pages#suggest'
+  # get '/seek'    => 'static_pages#seek'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # ログイン
@@ -25,4 +25,9 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[new create edit update]
+
+  # 投稿機能
+  # get '/posts' => 'posts#new'
+  # delete '/posts' => 'posts#destroy'
+  resources :posts, only: %i[new create edit update destroy]
 end

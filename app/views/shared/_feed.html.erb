@@ -1,0 +1,9 @@
+<% if @image_items.any? %>
+  <div class="container-fluid">
+    <div class="row">
+      <%= render @image_items %> 
+    </div>
+  </div>  
+    <%= paginate @image_items,
+    params: { controller: :static_pages, action: :home } %>
+<% end %>

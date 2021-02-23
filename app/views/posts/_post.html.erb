@@ -1,0 +1,18 @@
+<div class="col-sm-6　col-lg-3">
+  <div class="card" style="width: 18rem;">
+    <img src= <%= post.image.thumb300.url %> class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title text-center"><%= post.english %></h5>
+      <p class="card-text text-center"><%= post.japanese %></p>
+      <a href="#" class="btn btn-primary">詳細</a>
+      <span class="timestamp">
+        Posted <%= time_ago_in_words(post.created_at) %> ago.
+      </span>
+      <% if current_user.admin? %>
+      <%= link_to "delete", post_path(post), method: :delete,
+                            data: { confirm: "You sure?" } %>
+      <%= link_to "edit", edit_post_path(post.id) %>
+    <% end %>
+    </div>
+  </div>
+</div>

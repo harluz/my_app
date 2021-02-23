@@ -40,7 +40,7 @@ FactoryBot.define do
     sequence(:email) { |n| "example_other#{n}@example.com" }
     password { 'foobar' }
     password_confirmation { 'foobar' }
-    activated true
+    activated { true }
     activated_at { Time.zone.now }
   end
 
@@ -50,7 +50,7 @@ FactoryBot.define do
     # image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
     password { 'foobar' }
     password_confirmation { 'foobaz' }
-    activated false
+    activated { false }
     activated_at { Time.zone.now }
   end
 
@@ -61,7 +61,7 @@ FactoryBot.define do
     # image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
     password { nil }
     password_confirmation { nil }
-    activated false
+    activated { false }
     activated_at { Time.zone.now }
   end
 end
