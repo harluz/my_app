@@ -1,4 +1,20 @@
 <footer>
+  <% if logged_in? %>
+    <div class="container fixed-bottom">
+      <div class="row d-flex justify-content-center">
+        <aside class="col-md-4">
+          <section>
+            <%= link_to(image_tag("home.png", :size => "50x50", :alt => "home"), root_url, id: 'logo') %>
+            <%= link_to(image_tag("search.png", :size => "50x50", :alt => "search"), root_url, id: 'logo') %>
+            <%= link_to(image_tag("post.png", :size => "50x50", :alt => "post"), new_post_path, id: 'logo') %>
+            <%= link_to(image_tag("order.png", :size => "50x50", :alt => "order"), root_url, id: 'logo') %>
+            <%= link_to(image_tag("study.png", :size => "50x50", :alt => "study"), root_url, id: 'logo') %>
+            <%= link_to(image_tag("user.png", :size => "50x50", :alt => "user"), current_user, id: 'logo') %>
+          </section>
+        </aside>
+      </div>
+    </div>
+  <% end %>
   <div class="container">
     <div class="row copyright">
       <div class="col-md-12 text-center">
