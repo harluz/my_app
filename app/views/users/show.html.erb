@@ -1,4 +1,11 @@
 <% provide(:title, @user.name) %>
+<%
+=begin%>
+ <%= link_to "Post", my_posts_path, class: 'my_post', remote: true%>
+<%= link_to "Order", my_orders_path, class: 'my_order', remote: true%>
+<%= link_to "Response", my_responses_path, class: 'my_response', remote: true%> 
+<%
+=end%>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -18,5 +25,14 @@
         </div>
       </div>  
         <%= paginate @posts %>
+    <% end %>
+    <% if @user.orders.any? %>
+      <h3>Orders (<%= @user.orders.count %>)</h3>
+      <div class="container-fluid">
+        <div class="row">
+          <%= render @orders %> 
+        </div>
+      </div>  
+        <%= paginate @orders %>
     <% end %>
 </div>

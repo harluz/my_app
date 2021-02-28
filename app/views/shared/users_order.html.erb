@@ -1,0 +1,9 @@
+<% if @user.orders.any? %>
+      <h3>Posts (<%= @user.orders.count %>)</h3>
+      <div class="container-fluid">
+        <div class="row">
+          <%= render @order %> 
+        </div>
+      </div>  
+        <%= paginate @order %>
+    <% end %>

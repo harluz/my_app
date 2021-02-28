@@ -3,7 +3,7 @@
     <img src= <%= post.image.thumb300.url %> class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title text-center"><%= post.english %></h5>
-      <p class="card-text text-center"><%= post.japanese %></p>
+      <p class="card-title text-center"><%= post.japanese %></p>
       <a href="#" class="btn btn-primary">詳細</a>
       <span class="timestamp">
         Posted <%= time_ago_in_words(post.created_at) %> ago.
