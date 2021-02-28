@@ -28,9 +28,10 @@ users = User.order(:created_at).take(6)
   users.each { |user| user.posts.create!(english: english, japanese: '動物',
                                          image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test2.jpg'))) }
 end
+
 # ユーザーの一部を対象にオーダーを生成する
-# 30.times do
-#   english = Faker::Creature::Animal.name[0..50]
-#   users.each { |user| user.orders.create!(english: 'animal', japanese: '動物') }
-# end
-# ユーザーの一部を対象にレスポンスを生成する
+30.times do
+  english = Faker::Creature::Animal.name[0..50]
+  users.each { |user| user.orders.create!(english: english, japanese: '動物') }
+end
+
