@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   before_action :admin_user, only: %i[destroy]
   before_action :correct_user, only: %i[edit update]
 
+  PER = 10
+
   def new
     @post = Post.new
   end
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
     else
       # 投稿に失敗した場合の処理
       @image_items = Post.all.order(created_at: 'DESC').page(params[:page]).per(PER)
-      render 'static_pages/home'
+      render 'new'
     end
   end
 
@@ -44,7 +46,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:english, :japanese, :image, :comment)
+    params.require(:post).permit(:english, :japanese, :image, :comment).merge(user_id: current_user.id)
   end
 
   def correct_user
