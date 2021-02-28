@@ -25,6 +25,8 @@ class UsersController < ApplicationController
 
       # @user ? (redirect_to @user) : (redirect_to request.referer)
       @posts = @user.posts.page(params[:page]).per(PER)
+      @orders = @user.orders.page(params[:page]).per(PER)
+      # @responses = @user.responses.page(params[:page]).per(PER)
     else
       # ログインしていないユーザーの挙動が微妙
       redirect_to users_url
@@ -76,6 +78,11 @@ class UsersController < ApplicationController
       flash[:success] = 'User deleted'
     end
     redirect_to users_url
+  end
+
+  def ajax_my_posts
+    # 対応するjsファイルにインスタンス変数を渡す
+    @posts = @user.posts.page(params[:page]).per(PER)
   end
 
   private

@@ -1,9 +1,6 @@
-<%= form_with(model: @post, local: true) do |f| %>
+<%= form_with(model: @order, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-
-    <%= f.label :image %>
-    <%= f.file_field :image, class: 'form-control' %>
-
+  
     <%= f.label :english %>
     <%= f.text_field :english, class: 'form-control', placeholder: 'Please enter english'%>
 
@@ -13,5 +10,5 @@
     <%= f.label :comment %>
     <%= f.text_area :comment, class: 'form-control', placeholder: 'コメントの記入が可能です'%>
 
-    <%= f.submit "Post my image", class: "btn btn-primary" %>
+    <%= f.submit "Request an order", class: "btn btn-primary" %>
 <% end %>
