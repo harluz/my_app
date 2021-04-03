@@ -8,6 +8,8 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 
+gem "activerecord", ">= 5.2.4.5"
+
 gem 'bcrypt'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
@@ -45,7 +47,7 @@ gem 'jquery-rails'
 
 gem 'faker'
 
-gem 'carrierwave'
+gem "carrierwave", ">= 2.1.1"
 gem 'rmagick'
 
 gem 'kaminari'
