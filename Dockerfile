@@ -4,8 +4,12 @@ FROM ruby:2.6.3
 # RUN apt-get update -qq && \
 #     apt-get install -y build-essential \
 #                        nodejs
+RUN curl https://deb.nodesource.com/setup_12.x | bash
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends nodejs mariadb-client build-essential \
+    && apt-get install -y --no-install-recommends nodejs yarn mariadb-client build-essential \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
