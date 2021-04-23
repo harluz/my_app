@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'sample/index'
   get 'orders/new'
   get 'orders/create'
   get 'orders/edit'

@@ -12,6 +12,8 @@ AllCops:
     - 'spec/*.rb'
     - 'config/puma.rb'
     - '.pryrc'
+    - 'node_modules/node-sass/src/libsass/contrib/libsass.spec'
+    - 'node_modules/node-sass/src/libsass/extconf.rb'
   TargetRubyVersion: 2.6.3
 
 
